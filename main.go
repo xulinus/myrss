@@ -69,6 +69,7 @@ func main() {
 		Handler(http.StripPrefix("/feed", http.FileServer(http.Dir("./files/"))))
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/rss+xml")
 		fmt.Fprint(w, feed)
 	})
 
